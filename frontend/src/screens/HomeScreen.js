@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const HomeScreen = {
   render: async () => {
     const response = await axios({
@@ -7,10 +8,10 @@ const HomeScreen = {
         "Content-Type": "application/json",
       },
     });
-    if (!response || !response.statusText !== "OK") {
+    if (!response || response.statusText !== "OK") {
       return `<div>Error in getting data</div>`;
     }
-    const products = response.json();
+    const products = response.data;
     return `
     <ul class="products">
       ${products
