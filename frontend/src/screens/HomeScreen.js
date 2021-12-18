@@ -1,11 +1,13 @@
-import { products } from "../data";
+import data from "../data.js";
 
-export const Homescreen = {
+const HomeScreen = {
   render: () => {
+    const products = data.products;
     return `
     <ul class="products">
-      ${products.map(
-        (product) => `
+      ${products
+        .map(
+          (product) => `
             <li>
               <div class="product">
                 <a href="/#/product/${product._id}">
@@ -19,8 +21,10 @@ export const Homescreen = {
               </div>
             </li>
       `
-      )}
+        )
+        .join("\n")}
     </ul>
       `;
   },
 };
+export default HomeScreen;
