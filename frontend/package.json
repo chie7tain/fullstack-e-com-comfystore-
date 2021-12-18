@@ -1,0 +1,11 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "for the comfy api",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server src --verbose"
+  },
+  "author": "",
+  "license": "ISC"
+}
