@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>comfy app</title>
-    <script type="module" src="./app.js"></script>
     <!-- styles -->
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -31,12 +30,13 @@
       <footer>
         <!-- add date using javascript -->
 
-        All rights reserved &copy;
+        All rights reserved &copy; <span id="year"></span>
         <script>
-          document.write(new Date().getFullYear());
+          document.getElementById("year").innerText = new Date().getFullYear();
         </script>
       </footer>
       <!--end of footer -->
     </div>
+    <script src="main.js"></script>
   </body>
 </html>

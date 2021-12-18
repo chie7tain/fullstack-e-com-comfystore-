@@ -1,8 +1,16 @@
-import data from "../data.js";
-
+import axios from "axios";
 const HomeScreen = {
-  render: () => {
-    const products = data.products;
+  render: async () => {
+    const response = await axios({
+      url: "http://localhost:5000/api/products",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response || !response.statusText !== "OK") {
+      return `<div>Error in getting data</div>`;
+    }
+    const products = response.json();
     return `
     <ul class="products">
       ${products
