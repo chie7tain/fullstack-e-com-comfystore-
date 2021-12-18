@@ -1,0 +1,61 @@
+/* default browser resets */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%; /* 16px * 62.5% = 1rem = 10px */
+}
+body {
+  height: 100vh;
+  font: 1.6rem Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+:root {
+  --dark-blue: #203040;
+  --white: #fff;
+}
+/* styles for grid container */
+.grid-container {
+  display: grid;
+  grid-template-areas: "header" "main" "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%;
+}
+/*end  styles for grid container */
+/* styles for header */
+header {
+  grid-area: header;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* align header items vertically */
+  padding: 0.5rem;
+}
+header a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+header a:hover {
+  color: #f08040;
+}
+/* styles for brand */
+.brand a {
+  font-size: 3rem;
+}
+/*end of styles for brand */
+
+/*end of  styles for header */
+/* styles for footer */
+footer {
+  background-color: var(--dark-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+/* end of styles for footer */
