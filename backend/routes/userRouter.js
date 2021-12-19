@@ -31,6 +31,14 @@ userRouter.post(
     });
     if (!signinUser) {
       res.status(401).send({ message: "Invalid email or password" });
+    }else{
+      res.send({
+        _id:signinUser._id,
+        name:signinUser.name,
+        email:signinUser.email,
+        isAdmin:signUser.isAdmin,
+        token:generateToken(signinUser),
+      })
     }
   })
 );
