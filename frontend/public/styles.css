@@ -18,6 +18,7 @@ body {
   --white: #fff;
   --black: #000;
   --primaryGrey: #e0e0e0;
+  --gold: #ffc000;
 }
 a {
   text-decoration: none;
@@ -109,3 +110,13 @@ footer {
   font-size: 2rem;
 }
 /* end of styles for product  */
+/* styles for rating */
+.rating {
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+.rating span:last-child {
+  color: var(--dark-blue);
+  margin-left: 0.5rem;
+}
+/*end of styles for rating */
