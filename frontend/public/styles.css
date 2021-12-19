@@ -18,7 +18,11 @@ body {
   --white: #fff;
   --black: #000;
   --primaryGrey: #e0e0e0;
-  --gold: #ffc000;
+  --gold: #f0c040;
+  --btn-border-radius: 0.5rem;
+  --btn-border-color: #808080;
+  --btn-border-color-shade: #404040;
+  --transition: all 0.3s ease-in-out;
 }
 a {
   text-decoration: none;
@@ -27,6 +31,33 @@ a {
 a:hover {
   color: var(--primaryOrange);
 }
+/* styles for buttons */
+button {
+  font: 1.6rem Helvetica, Arial, sans-serif;
+  padding: 1rem;
+  border: 0.1rem solid var(--btn-border-color);
+  border-radius: var(--btn-border-radius);
+  -webkit-border-radius: var(--btn-border-radius);
+  -moz-border-radius: var(--btn-border-radius);
+  -ms-border-radius: var(--btn-border-radius);
+  -o-border-radius: var(--btn-border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+button:hover {
+  border: 0.1rem solid var(--btn-border-color-shade);
+}
+button.primary {
+  background-color: var(--gold);
+}
+.fw {
+  width: 100%;
+}
+/* end of styles for buttons */
 /* styles for grid container */
 .grid-container {
   display: grid;
@@ -119,4 +150,49 @@ footer {
   color: var(--dark-blue);
   margin-left: 0.5rem;
 }
+.content {
+  padding: 1rem;
+}
 /*end of styles for rating */
+/* styles for product details */
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.details-image {
+  flex: 2 1 60rem;
+}
+.details-image img {
+  max-width: 60rem;
+  width: 100%;
+}
+.details-info,
+.details-action {
+  flex: 1 1 30rem;
+}
+.details-info ul,
+.details-action ul {
+  padding: 0;
+  list-style: none;
+}
+.details-info h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+.details-info li,
+.details-action li {
+  margin-bottom: 1rem;
+}
+.details-action {
+  border: 0.1rem solid var(--primaryGrey);
+  padding: 1rem;
+  border-radius: var(--btn-border-radius);
+  -webkit-border-radius: var(--btn-border-radius);
+  -moz-border-radius: var(--btn-border-radius);
+  -ms-border-radius: var(--btn-border-radius);
+  -o-border-radius: var(--btn-border-radius);
+}
+
+/* end of styles for product details */
