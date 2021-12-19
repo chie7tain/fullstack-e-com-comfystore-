@@ -20,6 +20,7 @@ export default {
       brand: "Nike",
       rating: 5,
       numReviews: 51,
+      countInStock: 6,
     },
     {
       _id: "3",
@@ -41,6 +42,7 @@ export default {
       brand: "Under Armour",
       rating: 5,
       numReviews: 51,
+      countInStock: 16,
     },
     {
       _id: "5",
@@ -51,7 +53,7 @@ export default {
       brand: "Nike",
       rating: 4.5,
       numReviews: 10,
-      countInStock: 6,
+      countInStock: 26,
     },
     {
       _id: "6",
@@ -62,6 +64,7 @@ export default {
       brand: "Nike",
       rating: 5,
       numReviews: 51,
+      countInStock: 22,
     },
   ],
 };
