@@ -5,6 +5,7 @@ const app = express();
 import cors from "cors";
 import data from "./data.js";
 import config from "./config.js";
+import userRouter from "./routes/userRouter.js";
 console.log(config);
 console.log("hello", mongoose.connect(config.MONGODB_URL));
 
@@ -18,6 +19,7 @@ mongoose
   .catch((err) => console.log(err.reason));
 
 app.use(cors());
+app.use("/api/users",userRouter)
 app.get("/api/products", (req, res) => {
   res.send(data.products);
 });

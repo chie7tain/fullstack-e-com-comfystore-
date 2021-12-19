@@ -8,4 +8,5 @@ const userSchema = new mongoose.Schema({
   isAdmin: { type: Boolean, required: true, default: false },
 });
 // create a model using the schema
-const userModel = mongoose.model("User",userSchema);
+const userModel = mongoose.model("User", userSchema);
+export default userModel;
