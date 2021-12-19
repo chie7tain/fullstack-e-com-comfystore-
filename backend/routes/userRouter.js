@@ -1,6 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import User from "../models/userModel";
+import { generateToken } from "../utils";
 
 const userRouter = express.Router();
 
@@ -31,14 +32,14 @@ userRouter.post(
     });
     if (!signinUser) {
       res.status(401).send({ message: "Invalid email or password" });
-    }else{
+    } else {
       res.send({
-        _id:signinUser._id,
-        name:signinUser.name,
-        email:signinUser.email,
-        isAdmin:signUser.isAdmin,
-        token:generateToken(signinUser),
-      })
+        _id: signinUser._id,
+        name: signinUser.name,
+        email: signinUser.email,
+        isAdmin: signinUser.isAdmin,
+        token: generateToken(signinUser),
+      });
     }
   })
 );
