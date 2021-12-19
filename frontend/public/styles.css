@@ -34,7 +34,11 @@ a {
 a:hover {
   color: var(--primaryOrange);
 }
-/* styles for buttons */
+/* styles for buttons , input*/
+button {
+  cursor: pointer;
+}
+input,
 button {
   font: 1.6rem Helvetica, Arial, sans-serif;
   padding: 1rem;
@@ -44,13 +48,14 @@ button {
   -moz-border-radius: var(--btn-border-radius);
   -ms-border-radius: var(--btn-border-radius);
   -o-border-radius: var(--btn-border-radius);
-  cursor: pointer;
+
   transition: var(--transition);
   -webkit-transition: var(--transition);
   -moz-transition: var(--transition);
   -ms-transition: var(--transition);
   -o-transition: var(--transition);
 }
+input:hover,
 button:hover {
   border: 0.1rem solid var(--btn-border-color-shade);
 }
@@ -262,3 +267,29 @@ footer {
 }
 
 /*end of styles for cart */
+/* styles for form */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.form-items {
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  padding: 2rem;
+  border: 0.1rem solid var(--primaryGrey);
+  list-style: none;
+  border-radius: var(--btn-border-radius);
+}
+.form-items li {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.form-container h1 {
+  font-size: 2.5rem;
+}
+/*end of styles for form */
