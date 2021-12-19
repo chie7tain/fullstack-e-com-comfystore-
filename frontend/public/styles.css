@@ -23,6 +23,8 @@ body {
   --btn-border-color: #808080;
   --btn-border-color-shade: #404040;
   --transition: all 0.3s ease-in-out;
+  --success-color: #40c040;
+  --error-color: #c04040;
 }
 a {
   text-decoration: none;
@@ -56,6 +58,12 @@ button.primary {
 }
 .fw {
   width: 100%;
+}
+.success {
+  color: var(--success-color);
+}
+.error {
+  color: var(--error-color);
 }
 /* end of styles for buttons */
 /* styles for grid container */
