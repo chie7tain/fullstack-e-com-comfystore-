@@ -1,8 +1,33 @@
 {
+  "name": "comfystore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec babel-node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chie7tain/fullstack-e-com-comfystore-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chie7tain/fullstack-e-com-comfystore-/issues"
+  },
+  "homepage": "https://github.com/chie7tain/fullstack-e-com-comfystore-#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
     "@babel/node": "^7.16.5",
-    "@babel/preset-env": "^7.16.5"
+    "@babel/preset-env": "^7.16.5",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "nodemon": "^2.0.15"
   }
 }
