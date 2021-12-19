@@ -9,16 +9,15 @@ const ProductScreen = {
     });
   },
   render: async () => {
-    try {
-      const request = parseRequestUrl();
-      const product = await getProduct(request.id);
-      if (product.error) {
-        return `<div>${product.error}</div>`;
-      } else {
-        return `
+    const request = parseRequestUrl();
+    const product = await getProduct(request.id);
+    if (product.error) {
+      return `<div>${product.error}</div>`;
+    } else {
+      return `
           <div class="content">
             <div class="back-to-result">
-              <a href="#/">Back to result</a>
+              <a href="/#/">Back to result</a>
             </div>
             <div class="details">
               <div class="details-image">
@@ -64,9 +63,6 @@ const ProductScreen = {
             </div>
           </div>
         `;
-      }
-    } catch (error) {
-      return `<h1>${error.message}</h1>`;
     }
   },
 };

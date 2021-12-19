@@ -8,13 +8,14 @@ const routes = {
   "/": HomeScreen,
   "/product/:id": ProductScreen,
   "/cart/:id": CartScreen,
+  "/cart": CartScreen,
 };
 const router = async () => {
   const request = parseRequestUrl();
   const parseUrl =
     (request.resource ? `/${request.resource}` : "/") +
     (request.id ? "/:id" : "") +
-    (request.action ? `/${request.action}` : "");
+    (request.verb ? `/${request.verb}` : "");
 
   const screen = routes[parseUrl] ? routes[parseUrl] : Error404Screen;
 

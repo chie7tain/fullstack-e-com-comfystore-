@@ -5,6 +5,6 @@ export const getCartItems = () => {
   return cartItems;
 };
 
-export const setCartItem = (cartItems) => {
+export const setCartItems = (cartItems) => {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };

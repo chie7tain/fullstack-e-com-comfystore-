@@ -1,8 +1,7 @@
 import { getProduct } from "../api";
-import { parseRequestUrl } from "../utils";
-import { getCartItems } from "../localStorage";
-import { setCartItem } from "../localStorage";
-import { rerender } from "../utils";
+import { parseRequestUrl, rerender } from "../utils";
+import { getCartItems, setCartItems } from "../localStorage";
+
 const addToCart = (item, forceUpdate = false) => {
   let cartItems = getCartItems();
   const existItem = cartItems.find(
@@ -17,22 +16,39 @@ const addToCart = (item, forceUpdate = false) => {
   } else {
     cartItems = [...cartItems, item];
   }
-  setCartItem(cartItems);
+  setCartItems(cartItems);
   if (forceUpdate) {
     rerender(CartScreen);
   }
 };
 
+const removeFromCart = (id) => {
+  setCartItems(getCartItems().filter((cartItem) => cartItem.product !== id));
+  if (id === parseRequestUrl().id) {
+    document.location.hash = "/cart";
+  } else {
+    rerender(CartScreen);
+  }
+};
 const CartScreen = {
   after_render: () => {
-    const qtySelects = document.getElementsByClassName("qty-select");
-    Array.from(qtySelects).forEach((qtySelect) => {
+    const qtySelects = [...document.querySelectorAll(".qty-select")];
+    qtySelects.forEach((qtySelect) => {
       qtySelect.addEventListener("change", (e) => {
         const item = getCartItems().find(
           (cartItem) => cartItem.product === qtySelect.id
         );
         addToCart({ ...item, qty: Number(e.target.value) }, true);
       });
+    });
+    const deleteButtons = [...document.querySelectorAll(".delete-button")];
+    deleteButtons.forEach((deleteButton) => {
+      deleteButton.addEventListener("click", () => {
+        removeFromCart(deleteButton.id);
+      });
+    });
+    document.getElementById("checkout-button").addEventListener("click", () => {
+      document.location.hash = "/signin";
     });
   },
   render: async () => {
