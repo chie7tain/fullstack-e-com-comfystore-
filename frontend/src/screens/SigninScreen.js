@@ -24,7 +24,7 @@ const SigninScreen = {
   },
   render: () => {
     if (getUserInfo().name) {
-      return redirectUser();
+      redirectUser();
     }
     return `
     <div class="form-container">
