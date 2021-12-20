@@ -94,7 +94,7 @@ export const update = async ({ name, email, password }) => {
 export const createOrder = async (order) => {
   try {
     const { token } = getUserInfo();
-    const response = axios({
+    const response = await axios({
       url: `${apiUrl}/api/orders`,
       method: "POST",
       headers: {
@@ -103,12 +103,11 @@ export const createOrder = async (order) => {
       },
       data: order,
     });
-    if (response.statusText !== "OK") {
+    if (response.statusText !== "Created") {
       throw new Error(response.data.message);
     }
     return response.data;
   } catch (error) {
-    console.log(error);
     return {
       error: error.response ? error.response.data.message : error.message,
     };

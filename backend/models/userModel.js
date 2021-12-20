@@ -9,4 +9,5 @@ const userSchema = new mongoose.Schema({
 });
 // create a model using the schema
 const userModel = mongoose.model("User", userSchema);
+
 export default userModel;

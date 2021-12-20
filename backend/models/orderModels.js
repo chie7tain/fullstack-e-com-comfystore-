@@ -15,7 +15,7 @@ const orderSchema = new mongoose.Schema(
         },
       },
     ],
-    user: { type: mongoose.Schem.Types.ObjectId, ref: "User", required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     shipping: {
       address: String,
       city: String,
@@ -26,8 +26,8 @@ const orderSchema = new mongoose.Schema(
       paymentMethod: String,
       paymentResult: {
         orderID: String,
-        payerID: string,
-        paymentID: string,
+        payerID: String,
+        paymentID: String,
       },
     },
     itemsPrice: Number,
@@ -45,4 +45,5 @@ const orderSchema = new mongoose.Schema(
 );
 
 const Order = mongoose.model("Order", orderSchema);
+
 export default Order;
