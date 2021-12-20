@@ -1,7 +1,7 @@
 import HomeScreen from "./screens/HomeScreen.js";
 import ProductScreen from "./screens/ProductScreen.js";
 import Error404Screen from "./screens/Error404Screen.js";
-import { parseRequestUrl } from "./utils.js";
+import { parseRequestUrl, showLoading, hideLoading } from "./utils.js";
 import CartScreen from "./screens/CartScreen.js";
 import SigninScreen from "./screens/SigninScreen.js";
 import Header from "../components/Header.js";
@@ -13,6 +13,7 @@ const routes = {
   "/signin": SigninScreen,
 };
 const router = async () => {
+  showLoading();
   const request = parseRequestUrl();
   const parseUrl =
     (request.resource ? `/${request.resource}` : "/") +
@@ -32,6 +33,7 @@ const router = async () => {
   } else {
     console.log("no after_render");
   }
+  hideLoading();
 };
 
 window.addEventListener("load", router);
