@@ -45,7 +45,7 @@ export default {
       countInStock: 16,
     },
     {
-      _id: "555555555555555555555555",
+      _id: "5",
       name: "Nike Mens Running Shorts",
       category: "Shirts",
       image: "images/product-5.jpg",

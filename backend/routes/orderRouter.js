@@ -6,6 +6,18 @@ import Order from "../models/orderModels";
 
 const orderRouter = express.Router();
 
+orderRouter.get(
+  "/:id",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      res.send(order);
+    } else {
+      res.status(404).send({ message: "Order Not Found" });
+    }
+  })
+);
 orderRouter.post(
   "/",
   isAuth,
@@ -16,14 +28,12 @@ orderRouter.post(
       shipping: req.body.shipping,
       payment: req.body.payment,
       itemsPrice: req.body.itemsPrice,
-      shippingPrice: req.body.shippingPrice,
       taxPrice: req.body.taxPrice,
+      shippingPrice: req.body.shippingPrice,
       totalPrice: req.body.totalPrice,
     });
     const createdOrder = await order.save();
-    res
-      .status(201)
-      .send({ message: "Order placed successfully", order: createdOrder });
+    res.status(201).send({ message: "New Order Created", order: createdOrder });
   })
 );
 export default orderRouter;

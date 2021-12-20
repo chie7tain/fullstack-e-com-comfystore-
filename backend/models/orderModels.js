@@ -6,8 +6,8 @@ const orderSchema = new mongoose.Schema(
       {
         name: { type: String, required: true },
         image: { type: String, required: true },
-        qty: { type: Number, required: true },
         price: { type: Number, required: true },
+        qty: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
@@ -34,16 +34,14 @@ const orderSchema = new mongoose.Schema(
     taxPrice: Number,
     shippingPrice: Number,
     totalPrice: Number,
-    isPaid: { type: Boolean, default: false, required: true },
+    isPaid: { type: Boolean, required: true, default: false },
     paidAt: Date,
-    isDelivered: { type: Boolean, default: false, required: true },
+    isDelivered: { type: Boolean, required: true, default: false },
     deliveredAt: Date,
   },
   {
     timestamps: true,
   }
 );
-
 const Order = mongoose.model("Order", orderSchema);
-
 export default Order;
