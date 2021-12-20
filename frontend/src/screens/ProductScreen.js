@@ -1,6 +1,6 @@
 import { hideLoading, parseRequestUrl, showLoading } from "../utils";
 import { getProduct } from "../api";
-import Rating from "../../components/Rating";
+import Rating from "../components/Rating";
 const ProductScreen = {
   after_render: () => {
     const request = parseRequestUrl();
@@ -16,7 +16,7 @@ const ProductScreen = {
       return `<div>${product.error}</div>`;
     }
     hideLoading();
-      return `
+    return `
           <div class="content">
             <div class="back-to-result">
               <a href="/#/">Back to result</a>
@@ -65,7 +65,6 @@ const ProductScreen = {
             </div>
           </div>
         `;
-
   },
 };
 export default ProductScreen;

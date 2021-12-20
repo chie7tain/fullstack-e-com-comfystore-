@@ -326,3 +326,21 @@ footer {
   font-size: 2.5rem;
 }
 /*end of styles for form */
+/* checkout styles */
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
+  margin: 1rem auto;
+}
+.checkout-steps > div {
+  border-top: 0.3rem solid var(--primaryGrey);
+  color: var(--primaryGrey);
+  flex: 1 1;
+  padding-top: 1rem;
+}
+.checkout-steps > div.active {
+  color: var(--primaryOrange);
+  border-top: 0.3rem solid var(--primaryOrange);
+}
+/* end of checkout styles */

@@ -4,9 +4,10 @@ import Error404Screen from "./screens/Error404Screen.js";
 import { parseRequestUrl, showLoading, hideLoading } from "./utils.js";
 import CartScreen from "./screens/CartScreen.js";
 import SigninScreen from "./screens/SigninScreen.js";
-import Header from "../components/Header.js";
+import Header from "./components/Header.js";
 import RegisterScreen from "./screens/RegisterScreen.js";
 import ProfileScreen from "./screens/ProfileScreen.js";
+import ShippingScreen from "./screens/ShippingScreen.js";
 
 const routes = {
   "/": HomeScreen,
@@ -16,6 +17,7 @@ const routes = {
   "/signin": SigninScreen,
   "/register": RegisterScreen,
   "/profile": ProfileScreen,
+  "/shipping": ShippingScreen,
 };
 const router = async () => {
   showLoading();

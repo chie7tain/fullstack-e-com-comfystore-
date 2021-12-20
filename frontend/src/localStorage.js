@@ -37,3 +37,23 @@ export const getUserInfo = () => {
 export const clearUser = () => {
   localStorage.removeItem("userInfo");
 };
+export const getShipping = () => {
+  const shipping = localStorage.getItem("shipping")
+    ? JSON.parse(localStorage.getItem("shipping"))
+    : {
+        city: "",
+        country: "",
+        postalCode: "",
+        address: "",
+      };
+  return shipping;
+};
+
+export const setShipping = ({
+  city = "",
+  country = "",
+  postalCode = "",
+  address = "",
+}) => {
+  localStorage.setItem("shipping", JSON.stringify({ city, country, postalCode, address }));
+};
