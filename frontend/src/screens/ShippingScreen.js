@@ -4,7 +4,7 @@ import { getUserInfo, getShipping, setShipping } from "../localStorage";
 const ShippingScreen = {
   after_render: () => {
     document
-      .getElementById("shopping-form")
+      .getElementById("shipping-form")
       .addEventListener("submit", async (e) => {
         e.preventDefault();
         setShipping({
@@ -26,7 +26,7 @@ const ShippingScreen = {
     return `
     ${CheckoutSteps.render({ step1: true, step2: true })}
     <div class="form-container">
-      <form id="shopping-form">
+      <form id="shipping-form">
         <ul class="form-items">
           <li>
             <h1>Shipping</h1>
