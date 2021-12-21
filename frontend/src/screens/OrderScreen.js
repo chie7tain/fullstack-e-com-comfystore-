@@ -1,7 +1,13 @@
-import { parseRequestUrl, rerender, showLoading, showMessage } from "../utils";
+import {
+  parseRequestUrl,
+  rerender,
+  showLoading,
+  hideLoading,
+  showMessage,
+} from "../utils";
 import { getOrder, getPayPalClientId } from "../api";
 
-const addPaypalSdk = async () => {
+const addPaypalSdk = async (totalPrice) => {
   const clientId = await getPayPalClientId();
   showLoading();
   if (!window.paypal) {
@@ -9,53 +15,58 @@ const addPaypalSdk = async () => {
     script.type = "text/javascript";
     script.src = "https://www.paypalobjects.com/api/checkout.js";
     script.async = true;
-    script.onload = () => handlePayment(clientId);
+    script.onload = () => handlePayment(clientId, totalPrice);
     document.body.appendChild(script);
   } else {
-    handlePayment(clientId);
+    handlePayment(clientId, totalPrice);
   }
 };
 
-const handlePayment = async (clientId) => {
-  window.paypal.Button.render(
-    {
-      env: "sandbox",
-      client: {
-        sandbox: clientId,
-        production: "",
-      },
-      locale: "en_US",
-      style: {
-        size: "responsive",
-        color: "gold",
-        shape: "pill",
-      },
-      commit: true,
-      payment: (data, actions) => {
-        return actions.payment.create({
-          transactions: [
-            {
-              amount: {
-                total: order.totalPrice,
-                currency: "NGN",
+const handlePayment = (clientId, totalPrice) => {
+  try {
+    window.paypal.Button.render(
+      {
+        env: "sandbox",
+        client: {
+          sandbox: clientId,
+          production: "",
+        },
+        locale: "en_US",
+        style: {
+          size: "responsive",
+          color: "gold",
+          shape: "pill",
+        },
+        commit: true,
+        payment: (data, actions) => {
+          return actions.payment.create({
+            transactions: [
+              {
+                amount: {
+                  total: totalPrice,
+                  currency: "USD",
+                },
               },
-            },
-          ],
-        });
-      },
-      onAuthorize(data, actions) {
-        return actions.payment.execute().then(async () => {
-          showLoading();
-          // call pay order function
-          hideLoading();
-          showMessage("Payment was Successful", () => {
-            rerender(OrderScreen);
+            ],
           });
-        });
+        },
+        onAuthorize(data, actions) {
+          return actions.payment.execute().then(async () => {
+            showLoading();
+            // call pay order function
+            hideLoading();
+            showMessage("Payment was Successful", () => {
+              rerender(OrderScreen);
+            });
+          });
+        },
       },
-    },
-    "#paypal-button"
-  ).then(() => hideLoading());
+      "#paypal-button"
+    ).then(() => hideLoading());
+  } catch (error) {
+    hideLoading();
+    showMessage("Error processing payment");
+  }
 };
 const OrderScreen = {
   after_render: async () => {},
@@ -75,6 +86,9 @@ const OrderScreen = {
       paidAt,
       isPaid,
     } = await getOrder(request.id);
+    if (!isPaid) {
+      addPaypalSdk(totalPrice);
+    }
     return `
        <div>
        <h1>Order ${_id}</h1>
@@ -143,7 +157,7 @@ const OrderScreen = {
               <div>$${taxPrice}</div></li>
               <li class="total"><div>Order Total</div>
               <div >$${totalPrice}</div></li>
-
+              <li><div class="fw" id="paypal-button"></div></li>
             </ul>
         </div>
       </div>
