@@ -1,6 +1,62 @@
-import { parseRequestUrl } from "../utils";
-import { getOrder } from "../api";
+import { parseRequestUrl, rerender, showLoading, showMessage } from "../utils";
+import { getOrder, getPayPalClientId } from "../api";
 
+const addPaypalSdk = async () => {
+  const clientId = await getPayPalClientId();
+  showLoading();
+  if (!window.paypal) {
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://www.paypalobjects.com/api/checkout.js";
+    script.async = true;
+    script.onload = () => handlePayment(clientId);
+    document.body.appendChild(script);
+  } else {
+    handlePayment(clientId);
+  }
+};
+
+const handlePayment = async (clientId) => {
+  window.paypal.Button.render(
+    {
+      env: "sandbox",
+      client: {
+        sandbox: clientId,
+        production: "",
+      },
+      locale: "en_US",
+      style: {
+        size: "responsive",
+        color: "gold",
+        shape: "pill",
+      },
+      commit: true,
+      payment: (data, actions) => {
+        return actions.payment.create({
+          transactions: [
+            {
+              amount: {
+                total: order.totalPrice,
+                currency: "NGN",
+              },
+            },
+          ],
+        });
+      },
+      onAuthorize(data, actions) {
+        return actions.payment.execute().then(async () => {
+          showLoading();
+          // call pay order function
+          hideLoading();
+          showMessage("Payment was Successful", () => {
+            rerender(OrderScreen);
+          });
+        });
+      },
+    },
+    "#paypal-button"
+  ).then(() => hideLoading());
+};
 const OrderScreen = {
   after_render: async () => {},
   render: async () => {

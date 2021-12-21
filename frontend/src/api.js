@@ -133,3 +133,17 @@ export const getOrder = async (id) => {
     return { error: error.message };
   }
 };
+
+export const getPayPalClientId = async () => {
+  const response = await axios({
+    url: `${apiUrl}/api/paypal/clientId`,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.statusText !== "OK") {
+    throw new Error(response.data.message);
+  } else {
+    return response.data.clientId;
+  }
+};
